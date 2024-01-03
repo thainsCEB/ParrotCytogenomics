@@ -1,23 +1,23 @@
 ## Convert the TELL-Seq reads that were converted to 10x format or 10x reads into shotgun reads using the Scaff10x package
-conda create -n Singularity -c conda-forge singularity
-conda activate singularity
+	conda create -n Singularity -c conda-forge singularity
+	conda activate singularity
 
-sh /home/FM/thains/releases_v1.1_package/tellread-release/run_tellread_fq_sing.sh -i1 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R2_001.fastq.gz -r1 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R1_001.fastq.gz -r2 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R3_001.fastq.gz -o /home/FM/thains/TELLSeq_data/PyrPer1 -g NONE -s T504
+	sh /home/FM/thains/releases_v1.1_package/tellread-release/run_tellread_fq_sing.sh -i1 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R2_001.fastq.gz -r1 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R1_001.fastq.gz -r2 /home/FM/thains/TELLSeq_data/rawfastq/JB-TH-5S-PP_S5_R3_001.fastq.gz -o /home/FM/thains/TELLSeq_data/PyrPer1 -g NONE -s T504
 
 # Convert TELL-Seq fastq files into 10x fastq files for Supernova
-/home/FM/thains/releases_v1.1_package/conversion_tool/ust10x -i1 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_I1_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -r1 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_R1_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -r2 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_R2_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -wl /home/FM/thains/releases_v1.1_package/conversion_tool/4Mwith-alts-february-2016.txt
-gzip R1_sl.fastq.gz.4tenx.fastq
-mkdir /home/FM/thains/TELLSeq/convertedFastq/
-mv R1_sl.fastq.gz.4tenx.fastq.gz /home/FM/thains/TELLSeq/convertedFastq/PyrrhuraPerlata_S5_L001_R1_001.fastq.gz
-gzip R2_s1.fastq.gz.4tenx.fastq
-mv R2_s1.fastq.gz.4tenx.fastq.gz /home/FM/thains/TELLSeq/convertedFastq/PyrrhuraPerlata_S5_L001_R2_001.fastq.gz
+	/home/FM/thains/releases_v1.1_package/conversion_tool/ust10x -i1 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_I1_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -r1 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_R1_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -r2 /home/FM/thains/TELLSeq_data/bPyrPer1/Full/PyrrhuraPerlata_R2_T501.fastq.gz.corrected.err_barcode_removed.fastq.gz -wl /home/FM/thains/releases_v1.1_package/conversion_tool/4Mwith-alts-february-2016.txt
+	gzip R1_sl.fastq.gz.4tenx.fastq
+	mkdir /home/FM/thains/TELLSeq/convertedFastq/
+	mv R1_sl.fastq.gz.4tenx.fastq.gz /home/FM/thains/TELLSeq/convertedFastq/PyrrhuraPerlata_S5_L001_R1_001.fastq.gz
+	gzip R2_s1.fastq.gz.4tenx.fastq
+	mv R2_s1.fastq.gz.4tenx.fastq.gz /home/FM/thains/TELLSeq/convertedFastq/PyrrhuraPerlata_S5_L001_R2_001.fastq.gz
 
 # supernova assembly
-supernova run --id=$sampleID_supernova --fastq=/home/FM/thains/TELLSeq/convertedFastq --sample=PyrrhuraPerlata --maxreads='all' --accept-extreme-coverage
+	supernova run --id=$sampleID_supernova --fastq=/home/FM/thains/TELLSeq/convertedFastq --sample=PyrrhuraPerlata --maxreads='all' --accept-extreme-coverage
 
 # supernova mkoutput
-supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap
-supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap2
+	supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap
+	supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap2
 
 # the assembly name for species will start with the class it belongs to so b for birds, m for mammals, r for reptiles, a for amphibians, and f for fishes
 # then the first three letters for the genus name with the first captialized followed by the first three letters of the species name (again for letter in the species name is capitalized)
@@ -28,36 +28,36 @@ supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$samp
 	q1=/mnt/nfs/volume1/bucket/Combined_Storage/thains/PyrrhuraLepida_S2_L001_R1_001.fastq.gz
 	q2=/mnt/nfs/volume1/bucket/Combined_Storage/thains/PyrrhuraLepida_S2_L001_R2_001.fastq.gz
 
-/home/FM/thains/Scaff10X/src/scaff_reads $sampleID.reads $sampleID_R1.fastq.gz $sampleID_R2.fastq.gz
+	/home/FM/thains/Scaff10X/src/scaff_reads $sampleID.reads $sampleID_R1.fastq.gz $sampleID_R2.fastq.gz
 
-trimmomatic PE -threads 12 $sampleID_R1.fastq.gz $sampleID_R2.fastq.gz -output $sampleID_trimmed.fastq.gz ILLUMINACLIP:Adapters.fasta:2:30:10:2:keepBothReads LEADING:3 TRAILING 3 MINLEN:36
-mv $sampleID_trimmed_1P.fastq.gz $sampleID_R1.trimmed.fastq.gz
-mv $sampleID_trimmed_2P.fastq.gz $sampleID_R2.trimmed.fastq.gz
-cat $sampleID_trimmed_1U.fastq.gz $sampleID_trimmed_2U.fastq.gz > $sampleID_unpaired.trimmed.fastq.gz
+	trimmomatic PE -threads 12 $sampleID_R1.fastq.gz $sampleID_R2.fastq.gz -output $sampleID_trimmed.fastq.gz ILLUMINACLIP:Adapters.fasta:2:30:10:2:keepBothReads LEADING:3 TRAILING 3 MINLEN:36
+	mv $sampleID_trimmed_1P.fastq.gz $sampleID_R1.trimmed.fastq.gz
+	mv $sampleID_trimmed_2P.fastq.gz $sampleID_R2.trimmed.fastq.gz
+	cat $sampleID_trimmed_1U.fastq.gz $sampleID_trimmed_2U.fastq.gz > $sampleID_unpaired.trimmed.fastq.gz
 
 # unzip fasta file generated by supernova mkoutput pseudohap
-gunzip $sampleID.fasta.gz
-mv $sampleID.fasta $sampleID_supernova.fasdta
+	gunzip $sampleID.fasta.gz
+	mv $sampleID.fasta $sampleID_supernova.fasta
 
 # Removing redundant and duplicate sequences
-bwa index $sampleID_supernova.fasta
-samtools faidx $sampleID_supernova.fasta
-bwa mem -t12 $sampleID_supernova.fasta $sampleID_R1.trimmed.fastq.gz $sampleID_R2.trimmed.fastq.gz | samtools view -@ 12 -bSh - > $sampleID_purgeDups_paired.bam
-bwa mem -t12 $sampleID_supernova.fasta $sampleID_unpaired.trimmed.fastq.gz | samtools view -@ 12 -hbS - > $sampleID_purgeDups_single.bam
-samtools merge -@ 12 $sampleID_purgeDups.bam $sampleID_purgeDups_paired.bam $sampleID_purgeDups_singe.bam
-ngscstat bPyrPer1_purgeDups.bam
-calcuts TX.stat > $sampleID.cutoffs 2> $sampleID_calcults.log
-split_fa $sampleID_supernova.fasta > $sampleID_supernova.split
-minimap2 -xasm5 -DP $sampleID_supernova.split $sampleID_supernovac.split | gzip -c - > $sampleID_supernova.split.paf.gz
-purge_dups -2 -T $sampleID.cutoffs -c TX.base.cov $sampleID_purgeDups1.split.paf.gz > $sampleID_dups.bed 2> $sampleID_purgedups.log
-get_seqs -p $sampleID -e $sampleID_dups.bed $sampleID_supernova.fasta
-awk '{if (/>.*/) {print} else { sub(/^N*/, "")sub(/N*$/, ""); print}}' $sampleID.purged.fa | seqtk seq -l0 -L100 - > $sampleID.supernova_purged.fasta
+	bwa index $sampleID_supernova.fasta
+	samtools faidx $sampleID_supernova.fasta
+	bwa mem -t12 $sampleID_supernova.fasta $sampleID_R1.trimmed.fastq.gz $sampleID_R2.trimmed.fastq.gz | samtools view -@ 12 -bSh - > $sampleID_purgeDups_paired.bam
+	bwa mem -t12 $sampleID_supernova.fasta $sampleID_unpaired.trimmed.fastq.gz | samtools view -@ 12 -hbS - > $sampleID_purgeDups_single.bam
+	samtools merge -@ 12 $sampleID_purgeDups.bam $sampleID_purgeDups_paired.bam $sampleID_purgeDups_singe.bam
+	ngscstat bPyrPer1_purgeDups.bam
+	calcuts TX.stat > $sampleID.cutoffs 2> $sampleID_calcults.log
+	split_fa $sampleID_supernova.fasta > $sampleID_supernova.split
+	minimap2 -xasm5 -DP $sampleID_supernova.split $sampleID_supernovac.split | gzip -c - > $sampleID_supernova.split.paf.gz
+	purge_dups -2 -T $sampleID.cutoffs -c TX.base.cov $sampleID_purgeDups1.split.paf.gz > $sampleID_dups.bed 2> $sampleID_purgedups.log
+	get_seqs -p $sampleID -e $sampleID_dups.bed $sampleID_supernova.fasta
+	awk '{if (/>.*/) {print} else { sub(/^N*/, "")sub(/N*$/, ""); print}}' $sampleID.purged.fa | seqtk seq -l0 -L100 - > $sampleID.supernova_purged.fasta
 
 ## you also should align you linked reas to the assembly using LongRanger
 # this requires two steps
 
-seqtk seq -L5000 <draft.fasta> > <longseq.fasta>
+	seqtk seq -L5000 <draft.fasta> > <longseq.fasta>
 
-longranger mkref <longseq>.fasta
+	longranger mkref <longseq>.fasta
 
-longranger 
+	longranger 
