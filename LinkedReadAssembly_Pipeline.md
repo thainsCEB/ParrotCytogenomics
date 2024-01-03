@@ -19,12 +19,16 @@
 	supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap
 	supernova mkoutput --asmdir=$sampleID_supernova/outs/assembly/ --outprefix=$sampleID --style=pseudohap2
 
-# the assembly name for species will start with the class it belongs to so b for birds, m for mammals, r for reptiles, a for amphibians, and f for fishes
-# then the first three letters for the genus name with the first captialized followed by the first three letters of the species name (again for letter in the species name is capitalized)
-# this is followed by the number of which this is the version of individual, ask me if you have a question about this for this example Pyrrhura lepida is bPyrLep1
+the assembly name for species will start with the class it belongs to so b for birds, m for mammals, r for reptiles, a for amphibians, and f for fishes
+
+then the first three letters for the genus name with the first captialized followed by the first three letters of the species name (again for letter in the species name is capitalized)
+
+this is followed by the number of which this is the version of individual, ask me if you have a question about this for this example Pyrrhura lepida is bPyrLep1
 
 this will output all read files from '$sampleID.reads' into the two read files following
+
 example of bPyrLep1.reads:
+
 	q1=/mnt/nfs/volume1/bucket/Combined_Storage/thains/PyrrhuraLepida_S2_L001_R1_001.fastq.gz
 	q2=/mnt/nfs/volume1/bucket/Combined_Storage/thains/PyrrhuraLepida_S2_L001_R2_001.fastq.gz
 
